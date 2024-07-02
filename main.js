@@ -1,8 +1,7 @@
 const currentDay = document.getElementById('day');
+const currentTime = document.getElementById('time');
 
-const timeInMilli = document.getElementById('time');
-
-// Function to display current Day of the week
+// Function to display current day of the week
 const displayCurrentDayOfWeek = () => {
   const daysOfWeek = [
     'Sunday',
@@ -11,22 +10,21 @@ const displayCurrentDayOfWeek = () => {
     'Wednesday',
     'Thursday',
     'Friday',
+    'Saturday',
   ];
   const currentDate = new Date();
-  const dayOfWeek = daysOfWeek[currentDate.getUTCDay()];
-  currentDay.textContent = `${dayOfWeek}`;
+  const dayOfWeek = daysOfWeek[currentDate.getDay()];
+  currentDay.textContent = `Current day is ${dayOfWeek}`;
 };
 
-// Function to display Current time in Milliseconds
-const displayTimeinMilli = () => {
+// Function to display current time in a readable format
+const displayCurrentTime = () => {
   const currentDate = new Date();
-  const currentDateInMilli = currentDate.getTime();
-
-  // Format the millisecond count with commas as thousands separators
-  const formattedTimeInMilli = currentDateInMilli.toLocaleString();
-
-  timeInMilli.textContent = formattedTimeInMilli;
+  const hours = currentDate.getHours().toString().padStart(2, '0');
+  const minutes = currentDate.getMinutes().toString().padStart(2, '0');
+  const seconds = currentDate.getSeconds().toString().padStart(2, '0');
+  currentTime.textContent = `Current time is ${hours}:${minutes}:${seconds}`;
 };
 
-setInterval(displayTimeinMilli, 1000);
+setInterval(displayCurrentTime, 1000);
 displayCurrentDayOfWeek();
